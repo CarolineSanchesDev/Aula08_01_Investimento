@@ -1,6 +1,7 @@
-public static void main(String[] args) {
-        
-        SwingUtilities.invokeLater(() -> {
-            new Principal().setVisible(true);
-        });
-    }
+package view;
+
+import javax.swing.JFrame;
+
+public class Principal extends JFrame {
+
+}
