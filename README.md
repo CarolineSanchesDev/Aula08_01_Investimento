@@ -1,18 +1,34 @@
-## Getting Started
+## Atividade 1 da aula 8 de Java
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Requisitos:
 
-## Folder Structure
+Utilizando SWING (JFrame, JLabel, JButton, JTextField e JComboBox), crie uma aplicação ("Aula08_01_Investimento") que calcule, para o usuário, qual o rendimento ele terá numa determinada aplicação financeira. Para isso, o sistema deverá ter:
 
-The workspace contains two folders by default, where:
+1 JFrame;
+4 JLabels (3 para exibir textos informativos para solicitar dados e 1 para dar a resposta);
+2 JTextFields (1 para o valor a ser aplicado e outra para o prazo da aplicação, em meses)
+1 JButton (com o texto "Calcular Rendimento", que fará a ação desejada);
+1 JComboBox (com os textos de cada taxa a ser usada como indexador financeiro, como "Poupança", "CDI" e "Tesouro Direto");
+De acordo com a taxa selecionada, os juros aplicados à fórmula são:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+Poupança: 0.38% ao mês;
+CDI: 0.53% ao mês;
+Tesouro Direto: 0.65% ao mês.
+Os cálculos deverão ficar num pacote à parte (chamado "business"), numa classe chamada "Aplicacao". Ela deverá implementar a interface "IAplicacao" especificada abaixo:
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+interface IAplicacao {
+    void calcularRendimento(float valorAplicado, int prazo, float taxa);
+}
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+Nota 1: Os juros estão acima dos valores reais apenas para facilitar a realização do cálculo.
+Nota 2: para realizar a potência, pode ser utilizada a função Math.pow(base, pot);
+Nota 3: pesquise como permitir apenas valores numéricos ou ponto (para decimal) nos JTextFields (utilizando o método "addKeyListener").
+Nota 4: pesquise como utilizar o JComboBox.
+Nota 5: a classe Principal e o JFrame deverão ficar num pacote chamado "view".
+Nota 6: A fórmula de juros compostos para cálculo do investimento segue abaixo:
 
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+M = C * (1 + i)t, onde:
+M: montante
+C: capital inicial
+t: tempo/prazo de aplicação
+i: taxa (o valor deve ser dividido por 100)
