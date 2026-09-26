@@ -1,5 +1,6 @@
 package view;
 
+import business.Aplicacao;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -69,6 +70,45 @@ public class Principal extends JFrame {
 
         // Botão
         btnCalcular = new JButton("Calcular Rendimento");
+
+        btnCalcular.addActionListener(e -> {
+
+        try {
+            float valor = Float.parseFloat(txtValor.getText());
+            int prazo = Integer.parseInt(txtPrazo.getText());
+
+            float taxa = 0f;
+
+            int opcaoSelecionada = cbTaxa.getSelectedIndex();
+
+            if (opcaoSelecionada == 0) {
+                taxa = 0.38f;
+            } else if (opcaoSelecionada == 1) {
+                taxa = 0.53f;
+            } else if (opcaoSelecionada == 2) {
+                taxa = 0.65f;
+            }
+
+            Aplicacao aplicacao = new Aplicacao();
+
+            aplicacao.calcularRendimento(valor, prazo, taxa);
+
+            String resultado = String.format(
+                    "Rendimento: R$ %.2f",
+                    aplicacao.getMontanteFinal()
+            );
+
+            lblResultado.setText(resultado);
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Digite valores numéricos válidos.",
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    });
 
         // Adiciona os componentes à janela
         add(lblValor);
